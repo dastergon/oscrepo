@@ -22,18 +22,18 @@ the `--username` and `--password` parameters.
 
 Show the available .repo URLs for projects that contain the word containers (using `.oscrc`):
 
-  oscrepo url containers 
+    oscrepo url containers 
 
 Another example:
 
-  oscrepo url Virtualization:containers
+     oscrepo url Virtualization:containers
   
 Show the available .repo URLs for projects that contain the word containers (without `.oscrc`):
 
-  oscrepo url containers --username john --password smith
+    oscrepo url containers --username john --password smith
   
 If there are more than one entries that match the keyword, a enumerated list will be returned.
 To select the desired URL use the `--entry` option:
 
-  oscrepo url containers --entry 1
+     oscrepo url containers --entry 1
   
