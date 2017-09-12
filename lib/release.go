@@ -3,13 +3,17 @@ package lib
 import (
 	"bufio"
 	"bytes"
+	"log"
 	"os"
 	"strings"
 )
 
 // GetSystemReleaseName retrieves information about the distribution release as given by the vendor
 func GetSystemReleaseName() string {
-	f, _ := os.Open("/etc/os-release")
+	f, err := os.Open("/etc/os-release")
+	if err != nil {
+		log.Fatalln(err)
+	}
 	scanner := bufio.NewScanner(f)
 	var buffer bytes.Buffer
 	for scanner.Scan() {
