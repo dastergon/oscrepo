@@ -29,5 +29,7 @@ func GetSystemReleaseName() string {
 			}
 		}
 	}
-	return strings.Replace(buffer.String()[:len(buffer.String())-1], " ", "_", -1)
+	release := strings.Replace(buffer.String()[:len(buffer.String())-1], " ", "_", -1)
+	release = strings.Replace(release, "-", "_", -1)
+	return release
 }
