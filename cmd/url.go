@@ -23,20 +23,24 @@ var urlCmd = &cobra.Command{
 		word := args[0]
 
 		username, _ := cmd.Flags().GetString("username")
+		if username == "" {
+			username = CfgUsername
+		}
 		password, _ := cmd.Flags().GetString("password")
-		entry, _ := cmd.Flags().GetInt32("entry")
-
-		if username == "" || password == "" {
-			username, password = CfgUsername, CfgPassword
+		if password == "" {
+			password = CfgPassword
 		}
 
+		entry, _ := cmd.Flags().GetInt32("entry")
 		client := lib.NewBasicAuthClient(username, password)
 		systemRelease := lib.GetSystemReleaseName()
-		repositories, _ := client.GetRepositories()
+		repositories, err := client.GetRepositories()
+		if err != nil {
+			log.Fatalln("Authentication failed.")
+		}
 
 		count := int32(0)
 		for _, project := range repositories.Projects {
-
 			var buffer bytes.Buffer
 			if strings.Contains(project.Name, word) {
 				parts := strings.Split(project.Name, ":")
