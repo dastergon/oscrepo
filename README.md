@@ -37,3 +37,6 @@ To select the desired URL use the `--entry` option:
 
      oscrepo url containers --entry 1
   
+ Add specific repository with zypper:
+  
+      zypper ar -r $(oscrepo url containers --entry 1)
